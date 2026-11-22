@@ -26,12 +26,6 @@ jobs:
           pip install -r requirements.txt
           pip install flake8 black pytest pytest-cov "pandera[pandas]"
 
-      - name: Generate synthetic training dataset
-        run: |
-          mkdir -p data/raw
-          python src/generate_dataset.py \
-            --samples 5000 \
-            --output data/raw/telco_train.csv
 
       - name: Lint (flake8)
         run: flake8 src/ tests/ --max-line-length 100
@@ -39,8 +33,14 @@ jobs:
       - name: Format check (black)
         run: black --check src/ tests/
 
-      - name: Unit tests
-        run: pytest tests/unit -v --cov=src
+      - name: Unit and model quality tests
+  run: |
+    pytest tests/unit/test_features.py \
+           tests/unit/test_schema.py \
+           tests/unit/test_model.py \
+           -v \
+           --cov=src/features \
+           --cov-fail-under=80
 
   build-docker:
     needs: lint-and-test
