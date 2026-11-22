@@ -34,13 +34,13 @@ jobs:
         run: black --check src/ tests/
 
       - name: Unit and model quality tests
-  run: |
-    pytest tests/unit/test_features.py \
-           tests/unit/test_schema.py \
-           tests/unit/test_model.py \
-           -v \
-           --cov=src/features \
-           --cov-fail-under=80
+        run: |
+          pytest tests/unit/test_features.py \
+                tests/unit/test_schema.py \
+                tests/unit/test_model.py \
+                -v \
+                --cov=src/features \
+                --cov-fail-under=80
 
   build-docker:
     needs: lint-and-test
