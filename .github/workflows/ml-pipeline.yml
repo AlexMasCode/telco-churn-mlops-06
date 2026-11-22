@@ -22,7 +22,7 @@ name: Telco Churn ML Pipeline
 
 on:
   push:
-    branches: [develop]
+    branches: [main, develop]
   pull_request:
     branches: [main]
   schedule:
