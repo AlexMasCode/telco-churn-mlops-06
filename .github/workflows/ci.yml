@@ -26,6 +26,13 @@ jobs:
           pip install -r requirements.txt
           pip install flake8 black pytest pytest-cov "pandera[pandas]"
 
+      - name: Generate synthetic training dataset
+        run: |
+          mkdir -p data/raw
+          python src/generate_dataset.py \
+            --samples 5000 \
+            --output data/raw/telco_train.csv
+
       - name: Lint (flake8)
         run: flake8 src/ tests/ --max-line-length 100
 
