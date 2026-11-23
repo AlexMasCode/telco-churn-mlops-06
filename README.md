@@ -4,7 +4,9 @@
 
 XGBoost churn prediction model with a full MLOps CI/CD pipeline.
 Used as the hands-on example throughout Module 6: CI/CD Pipelines.
+## Deployment
 
+Docker images are published to GitHub Container Registry.
 ---
 
 ## Repository Structure
